@@ -30,11 +30,6 @@ class Customer {
         return this.service;
     }
 
-    @Override
-    public String toString() {
-        return "customer " + this.id;
-    }
-
     public boolean canBeServed(double time) {
         return this.getArr() >= time;
     }
@@ -45,6 +40,11 @@ class Customer {
 
     protected boolean isSameCustomer(Customer c) {
         return this.getId() == c.getId();
+    }
+    
+    @Override
+    public String toString() {
+        return "customer " + this.id;
     }
 
 }
