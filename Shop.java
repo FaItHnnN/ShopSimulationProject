@@ -1,4 +1,3 @@
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -25,16 +24,6 @@ class Shop {
         return servers.size();
     }
 
-    @Override
-    public String toString() {
-        return IntStream.rangeClosed(1, this.getNum())
-            .mapToObj(x -> new Server(x))
-            .map(x -> x.toString())
-            .reduce((x, y) -> x + ", " + y)
-            .map(x -> "[" + x + "]")
-            .orElse("[]");
-    }
-
     public Optional<Server> findServer(Customer cust) {
         return this.getServers()
             .stream()
@@ -46,6 +35,15 @@ class Shop {
         return new Shop(getServers().stream()
             .map(x -> x.isSame(s) ? s : x)
             .toList());
+    }
+        @Override
+    public String toString() {
+        return IntStream.rangeClosed(1, this.getNum())
+            .mapToObj(x -> new Server(x))
+            .map(x -> x.toString())
+            .reduce((x, y) -> x + ", " + y)
+            .map(x -> "[" + x + "]")
+            .orElse("[]");
     }
     
 }
