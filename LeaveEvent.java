@@ -11,16 +11,14 @@ class LeaveEvent extends Event {
         return true;
     }
 
-
-    @Override
-    public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId() + " leaves");
-    }
-
     @Override
     public Pair<Optional<Event>,Shop> next(Shop shop) {
         return new Pair<>(Optional.of(this), shop);
     }
-
+    
+    @Override
+    public String toString() {
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " leaves");
+    }
 
 }
