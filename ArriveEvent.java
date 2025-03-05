@@ -8,7 +8,7 @@ class ArriveEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId()).orElse(-1) + " arrives";
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " arrives");
     }
 
     @Override
