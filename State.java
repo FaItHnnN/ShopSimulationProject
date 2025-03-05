@@ -44,11 +44,6 @@ class State {
         this.lastEvent = lastEvent;
     }
 
-    @Override
-    public String toString() {
-        return message;
-    }
-
     protected Shop getShop() {
         return this.shop;
     }
@@ -61,30 +56,12 @@ class State {
         return this.lastEvent;
     } 
 
-
     public State next() {
-
 
         Pair<Optional<Event>, PQ<Event>> polled = queue.poll();
         Optional<Event> optEvent = polled.t();
         PQ<Event> newQueue = polled.u(); 
 
-        /* 
-        PQ<Event> ogQueue = queue;
-
-       
-            Pair<Optional<Event>, Shop> result = event.next(shop);
-            Shop updatedShop = event.next(shop).u();
-            
-            PQ<Event> addedEvent = result.t()
-                .map(e -> newQueue.add(e)) // Lambda function to add event if present
-                .orElseGet(() -> newQueue); // Lambda function to return unchanged queue if empty
-            return new State(addedEvent, updatedShop, event.toString(), Optional.of(event));
-        }).orElse(this);
-    }
-
-    
-        */
         return optEvent.map(event -> {
             if (event.isDoneEvent() && this.getQueue().poll().u().isEmpty()) {
                 Pair<Optional<Event>, Shop> result = event.next(shop);
@@ -93,14 +70,11 @@ class State {
                 return new State(addedEvent, shop, event.toString(), Optional.of(event));
             }
     
-
             if (event.isDoneEvent()) {
-
                 Shop updatedShop = event.next(shop).u();
-             
                 return new State(newQueue, updatedShop, event.toString(), Optional.of(event));
             } 
-            
+
             if (event.isLeaveEvent()) {
                 return new State(newQueue, shop, event.toString(), Optional.of(event));
             } else {
@@ -109,17 +83,10 @@ class State {
                     .map(e -> newQueue.add(e))
                     .orElseGet(() -> newQueue);
                 Shop updatedShop = result.u();
- 
-          
-
-
                 return new State(addedEvent, updatedShop, event.toString(), Optional.of(event));
             }
         }).orElse(this); 
     }
-
-
-
 
     public boolean hasNext() {
         return !this.isEmpty();
@@ -128,13 +95,11 @@ class State {
     public boolean isEmpty() {
         return this.getLast().map(event -> event.isTerminalEvent()).orElse(false);
     }
-
-
-    /* 
-    public boolean isEmpty() {
-        return this.getQueue().isEmpty() && this.getLast().map(x -> false).orElse(true);
+    
+    @Override
+    public String toString() {
+        return message;
     }
-    */
 
 }
 
