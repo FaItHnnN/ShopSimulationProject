@@ -54,11 +54,6 @@ class Server {
         return this.time;
     }
 
-    @Override
-    public String toString() {
-        return "server " + this.getServerid();
-    }
-
     public Server serve(Customer cust, double t) {
         return new Server(this.getServerid(), cust.getId(), t + cust.getArr());    
     }
@@ -73,6 +68,11 @@ class Server {
     
     public boolean isSame(Server s) {
         return this.getServerid() == s.getServerid();
+    }
+    
+    @Override
+    public String toString() {
+        return "server " + this.getServerid();
     }
 
 }
