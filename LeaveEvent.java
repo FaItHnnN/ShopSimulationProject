@@ -14,7 +14,7 @@ class LeaveEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId()).orElse(-1) + " leaves";
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " leaves");
     }
 
     @Override
