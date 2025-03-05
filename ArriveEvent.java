@@ -6,10 +6,6 @@ class ArriveEvent extends Event {
         super(c, etime);
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId() + " arrives");
-    }
 
     @Override
     public Pair<Optional<Event>,Shop> next(Shop shop) {
@@ -31,4 +27,10 @@ class ArriveEvent extends Event {
                                     shop);
             });
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " arrives");
+    }
+    
 }
