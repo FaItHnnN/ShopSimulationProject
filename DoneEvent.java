@@ -27,7 +27,7 @@ class DoneEvent extends Event {
 
     @Override
     public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId()).orElse(-1) + " done";
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " done");
     }
 
     @Override
