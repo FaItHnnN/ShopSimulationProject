@@ -26,15 +26,16 @@ class DoneEvent extends Event {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + super.getCustomer().map(x -> x.getId() + " done");
-    }
-
-    @Override
     public Pair<Optional<Event>,Shop> next(Shop shop) {
         return new Pair<>(Optional.empty(), 
         shop.update(new Server(this.getServer().getServerid()))); 
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + super.getCustomer().map(x -> x.getId() + " done");
+    }
+    
 }
 
 
