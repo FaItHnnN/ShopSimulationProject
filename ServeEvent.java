@@ -16,19 +16,16 @@ class ServeEvent extends Event {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + c.getId() + " serve by " + this.getServer();
-    }
-
-    @Override
     public Pair<Optional<Event>,Shop> next(Shop shop) {
         return new Pair<>(Optional.of(new DoneEvent(c, 
                                 c.serveTill(c.getService()), 
                                 this.getServer().serve(c))), 
                             shop.update(this.getServer().serve(c)));
     }
-
-
-
+    
+    @Override
+    public String toString() {
+        return super.toString() + c.getId() + " serve by " + this.getServer();
+    }
 
 }
